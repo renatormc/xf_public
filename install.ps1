@@ -58,12 +58,10 @@ function DownloadXF {
     $url = "https://raw.githubusercontent.com/renatormc/xf_public/main/repos.json"
     $jsonData = Invoke-RestMethod -Uri $url
     foreach ($item in $jsonData) {
-       try{
-          rclone sync "$item" "$dest" --progress
-           return
-       }catch{         
-          continue
-       }        
+      rclone sync "$item" "$dest" --progress
+      if($?){
+         return
+      }
     }
 }
 
