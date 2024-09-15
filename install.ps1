@@ -62,6 +62,7 @@ function DownloadXF {
           rclone sync "$item" "$dest" --progress
            return
        }catch{         
+          continue
        }        
     }
 }
